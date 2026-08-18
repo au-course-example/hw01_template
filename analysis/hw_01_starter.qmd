@@ -1,0 +1,52 @@
+---
+title: "DATA-413/613 HW 01"
+author: "Your Name"
+date: today
+number-sections: true
+code-line-numbers: true
+format:
+  html:
+    reader-mode: true
+    embed-resources: true
+---
+
+# Analysis Elements {.unnumbered}
+
+0. Load the {tidyverse} and use functions from {tidyverse} when appropriate.
+
+
+# College Scorecard
+
+The data folder contains `college_scorecard_extract_2025-11-17_413.csv`, a *subset* of data in the [College Scorecard](https://collegescorecard.ed.gov/data/) as of November 17, 2025. This data set contains information on undergraduate college cohorts in the United States. The data dictionary is in the `data` folder. The variables include:
+
+-   `ADM_RATE`: The Admission Rate
+-   `AGE_ENTRY`: Average age of entry
+-   `AVGFACSAL`: Average faculty salary per Month
+-   `CITY`: City
+-   `CONTROL`: Ownership-Public or Private: 1='Public Institution', 2='Private nonprofit Institution', 3='Private for-profit institution', -3='not available';
+- ...
+
+**1.**  Load the data.
+
+a.  Load `college_scorecard_extract_2025-11-17_413.csv` (in the `data` directory) *using one call to a {readr} function with a relative path* and save the resulting tibble.
+    -  Do not not suppress messages or warnings.
+
+b.  Use `glimpse()` to examine the data.
+
+
+**2.**  If you used the default settings for reading in the data, three variables are class character when the data suggests they should be numeric.
+
+a.  Identify the misidentified columns.\
+b.  **Look at the data that was imported**, at least the first 250 rows. Look at the help for `read_csv()`. Why did `read_csv()` interpret these columns as type character instead of double and not the rows with "NA" in them?
+
+
+**3.**  Reload the data with a {readr} function and *use an argument of that function* to convert all offending entries to `NA` so the variables are automatically read in as type double. The message from reading in the data should show 36 variables of class double.
+
+
+
+**4.**  How is average faculty salary associated with the admission rate? Create the plot per the steps in part a, then answer parts b, c, and d as text.
+
+a. Remove the `NA` values for just the variables of interest and use {ggplot2} to create a scatter plot to assess for a relationship (with `AVGFACSAL` as the explanatory X variable). 
+  - Use an argument of `geom_point()` to reduce over-plotting by decreasing opacity of the points. 
+  - Add the default smoother with `se = FALSE`. 
+  - Facet on `ICLEVEL`.
